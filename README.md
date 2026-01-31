@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=js,ts,react" />
+    <img src="https://skillicons.dev/icons?i=js,ts,react,vite,css,tailwind" />
   </a>
 </p>
 
@@ -51,10 +51,9 @@
 - **Vite**
 - **Tailwind CSS**
 - **Supabase Auth**
-- **Gemini 1.5 Flash** (optional)
+- **Gemini 1.5 Flash**
 
-[![My Skills](https://skillicons.dev/icons?i=supabase)](https://skillicons.dev)
-
+  
 ## Local setup
 
 [![My Skills](https://skillicons.dev/icons?i=linux)](https://skillicons.dev)
