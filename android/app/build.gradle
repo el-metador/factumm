@@ -1,0 +1,54 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "com.factumm.app"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.factumm.app"
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+        debug {
+            debuggable true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+def webDir = file("${rootProject.projectDir}/../dist")
+def assetsDir = file("$projectDir/src/main/assets/www")
+
+tasks.register("syncWebAssets") {
+    doLast {
+        if (webDir.exists()) {
+            delete(assetsDir)
+            assetsDir.mkdirs()
+            copy {
+                from(webDir)
+                into(assetsDir)
+            }
+            logger.lifecycle("Copied web assets from ${webDir} to ${assetsDir}.")
+        } else {
+            logger.lifecycle("No web assets found at ${webDir}. Run `npm run build` first.")
+        }
+    }
+}
+
+tasks.named("preBuild").configure {
+    dependsOn("syncWebAssets")
+}
